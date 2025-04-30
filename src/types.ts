@@ -4,4 +4,5 @@ export interface Project {
   tags: string[];
   url: string;
   gradientClass: string;
+  imageUrl?: string;
 }

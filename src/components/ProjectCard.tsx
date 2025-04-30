@@ -1,21 +1,41 @@
 import { type Project } from "../types";
+import Image from "next/image";
+import { FaGithub } from 'react-icons/fa';
 
 export default function ProjectCard({ project }: { project: Project }) {
   return (
-    <div className="rounded-lg overflow-hidden bg-white dark:bg-slate-800 shadow-md hover:shadow-lg transition">
-      <div className={`h-40 ${project.gradientClass} flex items-center justify-center text-white`}>
-        <span className="font-bold text-2xl">{project.name}</span>
+    <div className="rounded-[var(--card-radius)] overflow-hidden bg-white dark:bg-slate-800/50 shadow-md hover:shadow-xl transition duration-300 transform hover:-translate-y-2 bubble-glow backdrop-blur-sm">
+      <div className={`h-52 ${project.gradientClass} relative overflow-hidden`}>
+        {project.imageUrl ? (
+          <div className="absolute inset-0 flex items-center justify-center p-6">
+            <div className="relative h-28 w-28 bg-white dark:bg-slate-800 p-4 rounded-full shadow-lg">
+              <Image
+                src={project.imageUrl}
+                alt={`${project.name} logo`}
+                fill
+                className="object-contain p-1"
+                sizes="(max-width: 768px) 96px, 96px"
+              />
+            </div>
+          </div>
+        ) : (
+          <span className="font-bold text-2xl">{project.name}</span>
+        )}
+        {/* Overlay with project name */}
+        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent flex items-end justify-start p-5">
+          <span className="font-bold text-xl text-white">{project.name}</span>
+        </div>
       </div>
       <div className="p-6">
-        <h3 className="text-xl font-semibold mb-2">{project.name}</h3>
-        <p className="text-slate-600 dark:text-slate-300 mb-4">
+        <h3 className="text-xl font-semibold mb-3 text-blue-600 dark:text-blue-400">{project.name}</h3>
+        <p className="text-slate-600 dark:text-slate-300 mb-5">
           {project.description}
         </p>
-        <div className="flex gap-2 flex-wrap mb-4">
-          {project.tags.map((tag: string, index: number) => (
+        <div className="flex gap-2 flex-wrap mb-5">
+          {project.tags.map((tag, index) => (
             <span 
               key={index} 
-              className="px-2 py-1 text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full"
+              className="px-3 py-1 text-xs bg-blue-100/50 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200 rounded-full"
             >
               {tag}
             </span>
@@ -23,15 +43,12 @@ export default function ProjectCard({ project }: { project: Project }) {
         </div>
         <a 
           href={project.url}
-          className="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1"
+          className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 flex items-center gap-2 font-medium transition-colors"
           target="_blank"
           rel="noopener noreferrer"
         >
+          <FaGithub size={18} />
           View on GitHub
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-            <path fillRule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
-            <path fillRule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
-          </svg>
         </a>
       </div>
     </div>

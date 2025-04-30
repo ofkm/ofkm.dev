@@ -2,27 +2,23 @@ import { Project } from "../types";
 
 export const projects: Project[] = [
   {
-    name: "Project One",
+    name: "Svelocker UI",
     description:
-      "A utility library I built to simplify my development workflow and make common tasks more efficient.",
-    tags: ["JavaScript", "TypeScript", "Node.js"],
-    url: "https://github.com/OFKM/project-one",
-    gradientClass: "bg-gradient-to-r from-blue-500 to-blue-700",
+      "A Simple and Modern Docker Registry UI built with Typescript, and SvelteKit",
+    tags: ["Typescript", "GoLang", "SvelteKit"],
+    url: "https://github.com/ofkm/svelocker-ui",
+    gradientClass:
+      "bg-gradient-to-r from-blue-500 to-blue-700 dark:from-blue-400 dark:to-blue-600",
+    imageUrl: "/svelockerui.png",
   },
   {
-    name: "Project Two",
+    name: "Arcane",
     description:
-      "A modern UI component collection I use for my personal projects, built with accessibility in mind.",
-    tags: ["React", "Tailwind CSS", "Accessibility"],
-    url: "https://github.com/OFKM/project-two",
-    gradientClass: "bg-gradient-to-r from-blue-600 to-cyan-600",
-  },
-  {
-    name: "Project Three",
-    description:
-      "A CLI tool I developed to automate repetitive tasks in my development workflow.",
-    tags: ["CLI", "Python", "DevOps"],
-    url: "https://github.com/OFKM/project-three",
-    gradientClass: "bg-gradient-to-r from-cyan-600 to-blue-500",
+      "Simple and Elegant Docker Management UI written in Typescript and SvelteKit",
+    tags: ["SvelteKit", "Tailwind CSS", "Typescript"],
+    url: "https://github.com/ofkm/arcane",
+    gradientClass:
+      "bg-gradient-to-r from-blue-600 to-cyan-600 dark:from-blue-500 dark:to-cyan-500",
+    imageUrl: "/arcane.png",
   },
 ];
