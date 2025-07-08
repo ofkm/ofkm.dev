@@ -9,15 +9,22 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <div className="w-64 px-3 py-4 border-r bg-background overflow-y-auto">
-      <div className="space-y-4">
+    <div className="pb-12 min-h-screen">
+      <div className="space-y-4 py-4">
         {sidebarConfig.map((section) => (
-          <div key={section.title} className="space-y-3">
-            <h4 className="px-2 text-sm font-semibold text-foreground">{section.title}</h4>
+          <div key={section.title} className="px-3 py-2">
+            <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">{section.title}</h2>
             <div className="space-y-1">
               {section.items.map((item) => (
-                <Link key={item.href} href={item.href} className={cn('block px-2 py-1 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-accent', pathname === item.href && 'text-foreground bg-accent')}>
-                  {item.title}
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={cn(
+                    'block select-none space-y-1 rounded-md px-4 py-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
+                    pathname === item.href ? 'bg-accent text-accent-foreground' : 'text-muted-foreground'
+                  )}
+                >
+                  <div className="text-sm font-medium leading-none">{item.title}</div>
                 </Link>
               ))}
             </div>

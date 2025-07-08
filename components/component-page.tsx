@@ -61,7 +61,7 @@ export function ComponentPage({ component }: ComponentPageProps) {
             <div className="flex items-center justify-between bg-muted p-4 rounded-lg">
               <code className="text-sm">{component.installation}</code>
               <Button variant="ghost" size="sm" onClick={() => copyToClipboard(component.installation)}>
-                <Copy className="h-4 w-4" />
+                <Copy className="size-4" />
               </Button>
             </div>
           </CardContent>

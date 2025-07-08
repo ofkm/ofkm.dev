@@ -26,8 +26,8 @@ export function CodeBlock({ code, language }: CodeBlockProps) {
     <div className="relative">
       <Button variant="ghost" size="sm" className="absolute top-2 right-2 z-10" onClick={copyToClipboard}>
         {copied ?
-          <Check className="h-4 w-4" />
-        : <Copy className="h-4 w-4" />}
+          <Check className="size-4" />
+        : <Copy className="size-4" />}
       </Button>
       <pre className="bg-muted p-4 rounded-lg overflow-x-auto">
         <code className={`language-${language}`}>{code}</code>
