@@ -16,15 +16,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
         with:
-          node-version: 24
-          cache: npm
-          cache-dependency-path: package-lock.json
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install
 
       - name: Install Vercel CLI
-        run: npm install --global vercel@latest
+        run: bun add --global vercel@latest
 
       - name: Deploy to Vercel Action
         uses: BetaHuhn/deploy-to-vercel-action@v1
