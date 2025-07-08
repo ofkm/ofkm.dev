@@ -19,10 +19,29 @@ export function GitHubLink() {
 }
 
 export async function StarsCount() {
-  const data = await fetch('https://api.github.com/repos/ofkm/ofkm.dev', {
-    next: { revalidate: 86400 },
-  });
-  const json = await data.json();
+  try {
+    const data = await fetch('https://api.github.com/repos/ofkm/ofkm.dev', {
+      next: { revalidate: 86400 },
+    });
 
-  return <span className="text-muted-foreground w-8 text-xs tabular-nums">{json.stargazers_count >= 1000 ? `${(json.stargazers_count / 1000).toFixed(1)}k` : json.stargazers_count.toLocaleString()}</span>;
+    if (!data.ok) {
+      throw new Error('Failed to fetch GitHub data');
+    }
+
+    const json = await data.json();
+
+    // Check if stargazers_count exists and is a number
+    if (typeof json.stargazers_count !== 'number') {
+      return <span className="text-muted-foreground w-8 text-xs tabular-nums">0</span>;
+    }
+
+    const count = json.stargazers_count;
+    const formattedCount = count >= 1000 ? `${(count / 1000).toFixed(1)}k` : count.toLocaleString();
+
+    return <span className="text-muted-foreground w-8 text-xs tabular-nums">{formattedCount}</span>;
+  } catch (error) {
+    console.error('Error fetching GitHub stars:', error);
+    // Return fallback UI
+    return <span className="text-muted-foreground w-8 text-xs tabular-nums">0</span>;
+  }
 }

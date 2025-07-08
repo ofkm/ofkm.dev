@@ -10,9 +10,9 @@ import { Badge } from '@/components/ui/badge';
 import { AlertCircleIcon, BadgeCheckIcon, CheckIcon, Archive } from 'lucide-react';
 
 interface ProjectPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 // Helper function to get status styling and icon
@@ -41,8 +41,9 @@ function getStatusConfig(status: string) {
   }
 }
 
-export default function ProjectPage({ params }: ProjectPageProps) {
-  const project = projects[params.slug];
+export default async function ProjectPage({ params }: ProjectPageProps) {
+  const { slug } = await params;
+  const project = projects[slug];
 
   if (!project) {
     notFound();

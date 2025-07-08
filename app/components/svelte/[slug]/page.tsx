@@ -3,13 +3,14 @@ import { componentRegistry } from '@/lib/component-registry';
 import { notFound } from 'next/navigation';
 
 interface ComponentPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export default async function Page({ params }: ComponentPageProps) {
-  const component = componentRegistry[params.slug];
+  const { slug } = await params;
+  const component = componentRegistry[slug];
 
   if (!component) {
     notFound();
