@@ -1,5 +1,5 @@
 import { ComponentPage } from '@/components/component-page';
-import { componentRegistry } from '@/lib/component-registry';
+import { svelteComponentRegistry } from '@/config/svelte-component-registry';
 import { notFound } from 'next/navigation';
 
 interface ComponentPageProps {
@@ -10,7 +10,7 @@ interface ComponentPageProps {
 
 export default async function Page({ params }: ComponentPageProps) {
   const { slug } = await params;
-  const component = componentRegistry[slug];
+  const component = svelteComponentRegistry[slug];
 
   if (!component) {
     notFound();
@@ -19,9 +19,8 @@ export default async function Page({ params }: ComponentPageProps) {
   return <ComponentPage component={component} />;
 }
 
-// Generate static paths for all components
 export async function generateStaticParams() {
-  return Object.keys(componentRegistry).map((slug) => ({
+  return Object.keys(svelteComponentRegistry).map((slug) => ({
     slug,
   }));
 }

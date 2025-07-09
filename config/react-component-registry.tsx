@@ -21,7 +21,7 @@ export interface ComponentData {
   }[];
 }
 
-export const componentRegistry: Record<string, ComponentData> = {
+export const reactComponentRegistry: Record<string, ComponentData> = {
   card: {
     name: 'Card',
     description: 'Displays a card with header, content, and footer.',
@@ -73,7 +73,7 @@ export function CardDemo() {
 </Card>`,
       },
     ],
-    installation: `npx shadcn-ui@latest add card`,
+    installation: `shadcn@latest add card`,
     usage: `import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'`,
   },
 };

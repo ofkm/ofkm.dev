@@ -1,5 +1,5 @@
 import { ComponentPage } from '@/components/component-page';
-import { componentRegistry } from '@/lib/component-registry';
+import { reactComponentRegistry } from '@/config/react-component-registry';
 import { notFound } from 'next/navigation';
 
 interface ComponentPageProps {
@@ -10,7 +10,7 @@ interface ComponentPageProps {
 
 export default async function Page({ params }: ComponentPageProps) {
   const { slug } = await params;
-  const component = componentRegistry[slug];
+  const component = reactComponentRegistry[slug];
 
   if (!component) {
     notFound();
@@ -21,7 +21,7 @@ export default async function Page({ params }: ComponentPageProps) {
 
 // Generate static paths for all components
 export async function generateStaticParams() {
-  return Object.keys(componentRegistry).map((slug) => ({
+  return Object.keys(reactComponentRegistry).map((slug) => ({
     slug,
   }));
 }

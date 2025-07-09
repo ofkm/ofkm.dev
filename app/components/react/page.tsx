@@ -1,11 +1,11 @@
 import { MainContent } from '@/components/main-content';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { componentRegistry } from '@/lib/component-registry';
+import { reactComponentRegistry } from '@/config/react-component-registry';
 import Link from 'next/link';
 
 export default function ReactComponentsPage() {
-  const components = Object.entries(componentRegistry);
+  const components = Object.entries(reactComponentRegistry);
 
   return (
     <MainContent>

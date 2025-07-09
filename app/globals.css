@@ -126,3 +126,54 @@
     @apply bg-background text-foreground;
   }
 }
+
+.code-block-content {
+  background-color: #0d1117;
+  color: #e6edf3;
+}
+
+.code-block-content pre {
+  margin: 0;
+  padding: 1rem 0;
+  background: transparent !important;
+  overflow-x: auto;
+  counter-reset: step;
+  counter-increment: step 0;
+}
+
+.code-block-content code {
+  font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  display: grid;
+  min-width: 100%;
+}
+
+.code-block-content .line {
+  display: inline-block;
+  min-height: 1rem;
+  width: 100%;
+  padding: 0.125rem 1rem;
+  counter-increment: step;
+}
+
+.code-block-content .line::before {
+  content: counter(step);
+  display: inline-block;
+  width: 1.8rem;
+  margin-right: 1.4rem;
+  text-align: right;
+  color: #6b7280;
+  font-size: 12px;
+  user-select: none;
+}
+
+.code-block-content .line:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Dark theme styles */
+.code-block-content {
+  background-color: #0d1117;
+  color: #e6edf3;
+}

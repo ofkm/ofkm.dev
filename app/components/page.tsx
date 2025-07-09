@@ -10,8 +10,8 @@ const frameworks = [
     href: '/components/react',
   },
   {
-    name: 'Svelte',
-    description: 'Components built with Svelte and TypeScript',
+    name: 'SvelteKit',
+    description: 'Components built with SvelteKit and TypeScript',
     icon: <Icons.svelte className="size-10" />,
     href: '/components/svelte',
   },

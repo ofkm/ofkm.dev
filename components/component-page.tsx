@@ -1,21 +1,18 @@
 'use client';
 
-import { ComponentData } from '@/lib/component-registry';
+import { ComponentData } from '@/config/react-component-registry';
 import { MainContent } from './main-content';
 import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { CodeBlock } from './code-block';
 import { ComponentPreview } from './component-preview';
-import { Button } from '@/components/ui/button';
-import { Copy } from 'lucide-react';
 import { CardDefault, CardWithFooter } from './examples/card-examples';
+import { CodeBlockCommand } from './command';
 
 interface ComponentPageProps {
   component: ComponentData;
 }
 
-// Map example names to components
 const exampleComponents: Record<string, Record<string, React.ComponentType>> = {
   card: {
     Default: CardDefault,
@@ -24,15 +21,6 @@ const exampleComponents: Record<string, Record<string, React.ComponentType>> = {
 };
 
 export function ComponentPage({ component }: ComponentPageProps) {
-  const copyToClipboard = async (text: string) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      // You could add a toast notification here
-    } catch (err) {
-      console.error('Failed to copy text: ', err);
-    }
-  };
-
   return (
     <MainContent>
       <div className="space-y-8">
@@ -53,31 +41,39 @@ export function ComponentPage({ component }: ComponentPageProps) {
         </div>
 
         {/* Installation */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Installation</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex items-center justify-between bg-muted p-4 rounded-lg">
-              <code className="text-sm">{component.installation}</code>
-              <Button variant="ghost" size="sm" onClick={() => copyToClipboard(component.installation)}>
-                <Copy className="size-4" />
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
+        <div className="space-y-3">
+          <h2 className="text-2xl font-semibold">Installation</h2>
+          <CodeBlockCommand __npm__={`npx ${component.installation}`} __yarn__={`yarn ${component.installation}`} __pnpm__={`pnpm dlx ${component.installation}`} __bun__={`bunx --bun ${component.installation}`} />
+        </div>
 
         {/* Usage */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Usage</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <CodeBlock code={component.usage} language="tsx" />
-          </CardContent>
-        </Card>
+        <div className="space-y-3">
+          <h2 className="text-2xl font-semibold">Usage</h2>
+          <Tabs defaultValue="preview">
+            <TabsList className="bg-transparent p-0 gap-4">
+              <TabsTrigger value="preview" className="bg-transparent border-none data-[state=active]:bg-transparent data-[state=active]:text-white text-gray-400 hover:text-gray-200 p-0 h-auto font-medium">
+                Preview
+              </TabsTrigger>
+              <TabsTrigger value="code" className="bg-transparent border-none data-[state=active]:bg-transparent data-[state=active]:text-white text-gray-400 hover:text-gray-200 p-0 h-auto font-medium">
+                Code
+              </TabsTrigger>
+            </TabsList>
+            <TabsContent value="preview">
+              <ComponentPreview>
+                {(() => {
+                  const firstExample = component.examples[0];
+                  const ExampleComponent = exampleComponents['card']?.[firstExample?.name];
+                  return ExampleComponent ? <ExampleComponent /> : <div>Component not found</div>;
+                })()}
+              </ComponentPreview>
+            </TabsContent>
+            <TabsContent value="code">
+              <CodeBlock code={component.usage} language="svelte" showLineNumbers={true} />
+            </TabsContent>
+          </Tabs>
+        </div>
 
-        {/* Examples */}
+        {/* Examples
         <div className="space-y-6">
           <h2 className="text-2xl font-semibold">Examples</h2>
           {component.examples.map((example, index) => {
@@ -104,47 +100,14 @@ export function ComponentPage({ component }: ComponentPageProps) {
                       </ComponentPreview>
                     </TabsContent>
                     <TabsContent value="code">
-                      <CodeBlock code={example.code} language="tsx" />
+                      <CodeBlock code={example.code} language="tsx" showLineNumbers={true} />
                     </TabsContent>
                   </Tabs>
                 </CardContent>
               </Card>
             );
           })}
-        </div>
-
-        {/* Props Table */}
-        {component.props && (
-          <Card>
-            <CardHeader>
-              <CardTitle>Props</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="overflow-x-auto">
-                <table className="w-full border-collapse">
-                  <thead>
-                    <tr className="border-b">
-                      <th className="text-left p-2">Name</th>
-                      <th className="text-left p-2">Type</th>
-                      <th className="text-left p-2">Default</th>
-                      <th className="text-left p-2">Description</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {component.props.map((prop, index) => (
-                      <tr key={index} className="border-b">
-                        <td className="p-2 font-mono text-sm">{prop.name}</td>
-                        <td className="p-2 font-mono text-sm">{prop.type}</td>
-                        <td className="p-2 font-mono text-sm">{prop.default || '-'}</td>
-                        <td className="p-2 text-sm">{prop.description}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </CardContent>
-          </Card>
-        )}
+        </div> */}
       </div>
     </MainContent>
   );

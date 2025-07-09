@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, ExternalLink } from 'lucide-react';
 import Image from 'next/image';
-import { projects } from '@/lib/project-config';
+import { projects } from '@/config/project-config';
 import { Badge } from '@/components/ui/badge';
 import { AlertCircleIcon, BadgeCheckIcon, CheckIcon, Archive } from 'lucide-react';
 

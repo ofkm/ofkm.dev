@@ -1,6 +1,6 @@
 import { MainContent } from '@/components/main-content';
 import { SelectionCard } from '@/components/selection-card';
-import { projects } from '@/lib/project-config';
+import { projects } from '@/config/project-config';
 import Image from 'next/image';
 
 function getProjectIcon(project: { name: string; logo: string }) {
