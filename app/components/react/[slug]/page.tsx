@@ -16,7 +16,7 @@ export default async function Page({ params }: ComponentPageProps) {
     notFound();
   }
 
-  return <ComponentPage component={component} />;
+  return <ComponentPage component={component} slug={slug} />;
 }
 
 // Generate static paths for all components

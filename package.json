@@ -25,6 +25,7 @@
     "prettier": "^3.6.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "shadcn-svelte": "^1.0.6",
     "shiki": "^3.7.0",
     "tailwind-merge": "^3.3.1"
   },
