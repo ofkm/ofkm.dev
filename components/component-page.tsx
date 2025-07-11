@@ -7,6 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { CodeBlock } from './code-block';
 import { ComponentPreview } from './component-preview';
 import { CardDefault, CardWithFooter } from './examples/card-examples';
+import { DropdownButtonDefault } from '@/react-registry/ui/dropdown-button/dropdown-button';
 import { CodeBlockCommand } from './command';
 
 interface ComponentPageProps {
@@ -18,6 +19,9 @@ const exampleComponents: Record<string, Record<string, React.ComponentType>> = {
   card: {
     Default: CardDefault,
     'With Footer': CardWithFooter,
+  },
+  'dropdown-button': {
+    Default: DropdownButtonDefault,
   },
 };
 

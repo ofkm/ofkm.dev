@@ -58,8 +58,8 @@ export function DropdownButton({ mainButtonText, options, onMainButtonClick, var
           </Button>
 
           <DropdownMenuTrigger asChild>
-            <Button variant={variant} size={size} disabled={disabled} className="rounded-l-none px-2">
-              <ChevronDown className="h-4 w-4" />
+            <Button variant={variant} size={size} disabled={disabled} className="rounded-l-none border-l border-muted px-2">
+              <ChevronDown className="size-4" />
             </Button>
           </DropdownMenuTrigger>
         </div>

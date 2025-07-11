@@ -38,8 +38,7 @@ export const sidebarConfig: SidebarSection[] = [
       },
       {
         title: 'SvelteKit',
-        href: '/components/svelte',
-        items: svelteComponents,
+        href: 'https://shadcn.ofkm.dev',
       },
     ],
   },
