@@ -13,7 +13,7 @@ const frameworks = [
     name: 'SvelteKit',
     description: 'Components built with SvelteKit and TypeScript',
     icon: <Icons.svelte className="size-10" />,
-    href: '/components/svelte',
+    href: 'https://shadcn.ofkm.dev',
   },
 ];
 

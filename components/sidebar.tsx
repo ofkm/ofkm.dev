@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { sidebarConfig } from '@/config/sidebar-config';
 import { useState, useEffect } from 'react';
-import { ChevronDownIcon, ChevronRightIcon } from 'lucide-react';
+import { ChevronDownIcon, ChevronRightIcon, ExternalLink } from 'lucide-react';
 
 export function Sidebar() {
   const pathname = usePathname();
@@ -35,6 +35,7 @@ export function Sidebar() {
   };
 
   const isExpanded = (href: string) => expandedItems.has(href);
+  const isExternalLink = (href: string) => href.startsWith('http');
 
   return (
     <div className="pb-12 min-h-screen">
@@ -56,7 +57,10 @@ export function Sidebar() {
                             pathname === item.href ? 'bg-accent text-accent-foreground' : 'text-muted-foreground'
                           )}
                         >
-                          <span>{item.title}</span>
+                          <span className="flex items-center gap-2">
+                            {item.title}
+                            {isExternalLink(item.href) && <ExternalLink className="h-3 w-3" />}
+                          </span>
                           <ChevronRightIcon className={cn('h-4 w-4 transition-transform duration-200', isExpanded(item.href) && 'rotate-90')} />
                         </button>
                         {isExpanded(item.href) && (
@@ -66,11 +70,13 @@ export function Sidebar() {
                                 key={subItem.href}
                                 href={subItem.href}
                                 className={cn(
-                                  'block rounded-md px-3 py-1.5 text-sm transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
+                                  'flex items-center gap-2 rounded-md px-3 py-1.5 text-sm transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
                                   pathname === subItem.href ? 'bg-accent text-accent-foreground font-medium' : 'text-muted-foreground'
                                 )}
+                                {...(isExternalLink(subItem.href) && { target: '_blank', rel: 'noopener noreferrer' })}
                               >
                                 {subItem.title}
+                                {isExternalLink(subItem.href) && <ExternalLink className="h-3 w-3" />}
                               </Link>
                             ))}
                           </div>
@@ -80,11 +86,13 @@ export function Sidebar() {
                     : <Link
                         href={item.href}
                         className={cn(
-                          'block rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
+                          'flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
                           pathname === item.href ? 'bg-accent text-accent-foreground' : 'text-muted-foreground'
                         )}
+                        {...(isExternalLink(item.href) && { target: '_blank', rel: 'noopener noreferrer' })}
                       >
                         {item.title}
+                        {isExternalLink(item.href) && <ExternalLink className="h-3 w-3" />}
                       </Link>
 
                   }

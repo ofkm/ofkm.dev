@@ -11,7 +11,6 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="flex h-14 items-center px-4">
-        {/* Logo/Brand */}
         <div className="flex">
           <Link href="/" className="mr-2 flex items-center space-x-2">
             <div className="size-6 bg-surface rounded flex items-center justify-center">
@@ -20,7 +19,6 @@ export function Header() {
           </Link>
         </div>
 
-        {/* Navigation Menu */}
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>

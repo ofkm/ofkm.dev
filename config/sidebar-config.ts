@@ -1,5 +1,4 @@
 import { reactComponentRegistry } from './react-component-registry';
-import { svelteComponentRegistry } from './svelte-component-registry';
 
 export interface SidebarItem {
   title: string;
@@ -15,11 +14,6 @@ export interface SidebarSection {
 const reactComponents = Object.entries(reactComponentRegistry).map(([key, component]) => ({
   title: component.name,
   href: `/components/react/${key}`,
-}));
-
-const svelteComponents = Object.entries(svelteComponentRegistry).map(([key, component]) => ({
-  title: component.name,
-  href: `/components/svelte/${key}`,
 }));
 
 export const sidebarConfig: SidebarSection[] = [
