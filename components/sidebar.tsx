@@ -37,6 +37,12 @@ export function Sidebar() {
   const isExpanded = (href: string) => expandedItems.has(href);
   const isExternalLink = (href: string) => href.startsWith('http');
 
+  const StatusIndicator = ({ status }: { status?: 'active' | 'archived' }) => {
+    if (!status) return null;
+
+    return <div className={cn('w-2 h-2 rounded-full animate-pulse', status === 'active' ? 'bg-green-500/40 shadow-[0_0_6px_rgba(34,197,94,0.6)]' : 'bg-amber-500/40 shadow-[0_0_6px_rgba(234,179,8,0.6)]')} />;
+  };
+
   return (
     <div className="pb-12 min-h-screen">
       <div className="space-y-4 py-4">
@@ -59,6 +65,7 @@ export function Sidebar() {
                         >
                           <span className="flex items-center gap-2">
                             {item.title}
+                            <StatusIndicator status={item.status} />
                             {isExternalLink(item.href) && <ExternalLink className="h-3 w-3" />}
                           </span>
                           <ChevronRightIcon className={cn('h-4 w-4 transition-transform duration-200', isExpanded(item.href) && 'rotate-90')} />
@@ -76,6 +83,7 @@ export function Sidebar() {
                                 {...(isExternalLink(subItem.href) && { target: '_blank', rel: 'noopener noreferrer' })}
                               >
                                 {subItem.title}
+                                <StatusIndicator status={subItem.status} />
                                 {isExternalLink(subItem.href) && <ExternalLink className="h-3 w-3" />}
                               </Link>
                             ))}
@@ -92,6 +100,7 @@ export function Sidebar() {
                         {...(isExternalLink(item.href) && { target: '_blank', rel: 'noopener noreferrer' })}
                       >
                         {item.title}
+                        <StatusIndicator status={item.status} />
                         {isExternalLink(item.href) && <ExternalLink className="h-3 w-3" />}
                       </Link>
 

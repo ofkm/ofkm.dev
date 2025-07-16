@@ -4,6 +4,7 @@ export interface SidebarItem {
   title: string;
   href: string;
   items?: SidebarItem[];
+  status?: 'active' | 'archived';
 }
 
 export interface SidebarSection {
@@ -39,8 +40,16 @@ export const sidebarConfig: SidebarSection[] = [
   {
     title: 'Projects',
     items: [
-      { title: 'Arcane', href: '/projects/arcane' },
-      { title: 'Pocket ID', href: '/projects/pocket-id' },
+      {
+        title: 'Arcane',
+        href: '/projects/arcane',
+        status: 'active',
+      },
+      {
+        title: 'Svelocker UI',
+        href: '/projects/svelockerui',
+        status: 'archived',
+      },
     ],
   },
 ];
