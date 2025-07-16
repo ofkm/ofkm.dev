@@ -75,7 +75,7 @@ export function DropdownButtonDemo() {
 />`,
       },
     ],
-    installation: `shadcn@latest add dropdown-menu button`,
+    installation: `shadcn@latest add https://react.ofkm.dev/r/dropdown-button.json`,
     usage: `import { DropdownButton } from '@/components/ui/dropdown-button'`,
     props: [
       {
