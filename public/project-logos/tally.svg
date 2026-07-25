@@ -1,0 +1,10 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="tally">
+  <title>tally</title>
+  <g stroke="#D6336C" stroke-width="11" stroke-linecap="round">
+    <path d="M32 30V98" />
+    <path d="M52 30V98" />
+    <path d="M72 30V98" />
+    <path d="M92 30V98" />
+    <path d="M22 96L102 32" />
+  </g>
+</svg>

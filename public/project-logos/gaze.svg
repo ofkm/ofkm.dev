@@ -1,0 +1,10 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Gaze">
+  <title>Gaze</title>
+  <g stroke="#00ADD8" stroke-width="12" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 44V32Q18 18 32 18H44" />
+    <path d="M84 18H96Q110 18 110 32V44" />
+    <path d="M110 84V96Q110 110 96 110H84" />
+    <path d="M44 110H32Q18 110 18 96V84" />
+  </g>
+  <circle cx="64" cy="64" r="14" fill="#00ADD8" />
+</svg>
