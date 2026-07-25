@@ -33,10 +33,9 @@ jobs:
       - name: Check formatting
         run: pnpm format:check
 
-      - name: Typecheck
-        run: pnpm typecheck
-
-      - name: Build
+      # `src/routeTree.gen.ts` is emitted by the Vite plugin, so typechecking
+      # has to happen after the build — `pnpm build` runs `tsc --noEmit` itself.
+      - name: Build and typecheck
         run: pnpm build
 
   deploy:
